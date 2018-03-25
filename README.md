@@ -1,3 +1,4 @@
+
 #  Beta Calculator 
 ## Author : Avnit Bambah
 ### Date : 03/12/2018
@@ -199,300 +200,12 @@ all_weekdays = pd.date_range(start=start_date, end=end_date, freq='B')
 # All we need to do is reindex close using all_weekdays as the new index
 close = close.reindex(all_weekdays)
 
-close.head(10)
+close_onedayold = close.shift(-1)
+close_onedayold.head(10)
+
+close_final = close - close_onedayold
+
 ```
-
-
-
-
-<div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>AAPL</th>
-      <th>BETR</th>
-      <th>BUFF</th>
-      <th>CALM</th>
-      <th>CENT</th>
-      <th>CME</th>
-      <th>DTEA</th>
-      <th>FRPT</th>
-      <th>GOOG</th>
-      <th>KHC</th>
-      <th>...</th>
-      <th>PPC</th>
-      <th>RELV</th>
-      <th>RIBT</th>
-      <th>SAFM</th>
-      <th>SPY</th>
-      <th>TOF</th>
-      <th>VVI</th>
-      <th>WILC</th>
-      <th>WWAV</th>
-      <th>agg</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2000-01-03</th>
-      <td>2.706315</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.637909</td>
-      <td>3.413309</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.883336</td>
-      <td>4.125650</td>
-      <td>NaN</td>
-      <td>4.245998</td>
-      <td>103.393242</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-04</th>
-      <td>2.478144</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.604914</td>
-      <td>3.286890</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.446455</td>
-      <td>4.250875</td>
-      <td>NaN</td>
-      <td>4.003366</td>
-      <td>99.349930</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-05</th>
-      <td>2.514410</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.604914</td>
-      <td>3.265820</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.504705</td>
-      <td>4.000824</td>
-      <td>NaN</td>
-      <td>4.367311</td>
-      <td>99.527641</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-06</th>
-      <td>2.296816</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.626911</td>
-      <td>3.286890</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.825084</td>
-      <td>4.000824</td>
-      <td>NaN</td>
-      <td>4.124682</td>
-      <td>97.928093</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-07</th>
-      <td>2.405613</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.626911</td>
-      <td>3.286890</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.970712</td>
-      <td>3.875598</td>
-      <td>NaN</td>
-      <td>4.245998</td>
-      <td>103.615379</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-10</th>
-      <td>2.363304</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.626911</td>
-      <td>3.202610</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.504705</td>
-      <td>3.875598</td>
-      <td>NaN</td>
-      <td>4.124682</td>
-      <td>103.970871</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-11</th>
-      <td>2.242418</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.615912</td>
-      <td>3.244750</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.533829</td>
-      <td>4.250875</td>
-      <td>NaN</td>
-      <td>4.245998</td>
-      <td>102.726746</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-12</th>
-      <td>2.107934</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.615912</td>
-      <td>3.329029</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.533829</td>
-      <td>5.251082</td>
-      <td>NaN</td>
-      <td>3.912383</td>
-      <td>101.704826</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-13</th>
-      <td>2.339126</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.615912</td>
-      <td>3.329029</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>5.970712</td>
-      <td>5.001029</td>
-      <td>NaN</td>
-      <td>3.980611</td>
-      <td>103.082207</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2000-01-14</th>
-      <td>2.428280</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>0.621403</td>
-      <td>3.202610</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>6.087214</td>
-      <td>5.625959</td>
-      <td>NaN</td>
-      <td>4.306655</td>
-      <td>104.481773</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>10 rows × 26 columns</p>
-</div>
-
-
 
 
 ```python
@@ -795,7 +508,7 @@ vr.head(10)
 
 
 ```python
-covar = close.cov()
+covar = close_final.cov()
 covar.head(10)
 
 ```
@@ -847,243 +560,243 @@ covar.head(10)
   <tbody>
     <tr>
       <th>AAPL</th>
-      <td>2222.202734</td>
-      <td>-51.143884</td>
-      <td>86.247963</td>
-      <td>694.738568</td>
-      <td>265.995337</td>
-      <td>1466.740664</td>
-      <td>-82.765683</td>
-      <td>67.761889</td>
-      <td>11591.169170</td>
-      <td>37.728778</td>
+      <td>0.790129</td>
+      <td>0.082299</td>
+      <td>0.149833</td>
+      <td>0.063228</td>
+      <td>0.037944</td>
+      <td>0.240610</td>
+      <td>0.025684</td>
+      <td>0.134653</td>
+      <td>3.181668</td>
+      <td>0.583230</td>
       <td>...</td>
-      <td>179.671918</td>
-      <td>-481.554740</td>
-      <td>-3827.297967</td>
-      <td>1435.955249</td>
-      <td>2337.901203</td>
+      <td>0.035921</td>
+      <td>0.018094</td>
+      <td>0.093943</td>
+      <td>0.120666</td>
+      <td>0.531436</td>
       <td>NaN</td>
-      <td>352.069745</td>
-      <td>-0.355950</td>
+      <td>0.090070</td>
+      <td>-0.475934</td>
       <td>NaN</td>
-      <td>652.981952</td>
+      <td>-0.019480</td>
     </tr>
     <tr>
       <th>BETR</th>
-      <td>-51.143884</td>
-      <td>8.469221</td>
-      <td>-0.874500</td>
-      <td>5.093134</td>
-      <td>-15.792594</td>
-      <td>-35.436553</td>
-      <td>8.089958</td>
-      <td>-5.467575</td>
-      <td>-206.356633</td>
-      <td>-2.486708</td>
+      <td>0.082299</td>
+      <td>0.151804</td>
+      <td>0.042721</td>
+      <td>0.038721</td>
+      <td>0.021515</td>
+      <td>0.041686</td>
+      <td>0.008618</td>
+      <td>0.017510</td>
+      <td>0.433829</td>
+      <td>0.038860</td>
       <td>...</td>
-      <td>-5.513968</td>
-      <td>-1.072438</td>
-      <td>0.567604</td>
-      <td>-52.470184</td>
-      <td>-41.257740</td>
+      <td>0.024728</td>
+      <td>0.009556</td>
+      <td>-0.000227</td>
+      <td>0.074199</td>
+      <td>0.162904</td>
       <td>NaN</td>
-      <td>-20.738042</td>
+      <td>0.018389</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>-0.847770</td>
+      <td>0.000018</td>
     </tr>
     <tr>
       <th>BUFF</th>
-      <td>86.247963</td>
-      <td>-0.874500</td>
-      <td>23.115937</td>
-      <td>-6.656368</td>
-      <td>29.778206</td>
-      <td>92.232768</td>
-      <td>-10.094158</td>
-      <td>13.691463</td>
-      <td>472.453186</td>
-      <td>2.471830</td>
+      <td>0.149833</td>
+      <td>0.042721</td>
+      <td>0.296293</td>
+      <td>0.078403</td>
+      <td>0.050069</td>
+      <td>0.136931</td>
+      <td>0.019553</td>
+      <td>0.044157</td>
+      <td>0.999974</td>
+      <td>0.107708</td>
       <td>...</td>
-      <td>12.812706</td>
-      <td>-0.114160</td>
-      <td>-0.389499</td>
-      <td>79.594885</td>
-      <td>99.745831</td>
+      <td>0.038858</td>
+      <td>-0.005401</td>
+      <td>-0.000076</td>
+      <td>0.157119</td>
+      <td>0.300523</td>
       <td>NaN</td>
-      <td>33.249147</td>
-      <td>-0.010075</td>
+      <td>0.043564</td>
+      <td>-0.028433</td>
       <td>NaN</td>
-      <td>4.958275</td>
+      <td>-0.001000</td>
     </tr>
     <tr>
       <th>CALM</th>
-      <td>694.738568</td>
-      <td>5.093134</td>
-      <td>-6.656368</td>
-      <td>247.884557</td>
-      <td>70.658497</td>
-      <td>433.381507</td>
-      <td>8.014144</td>
-      <td>-7.254609</td>
-      <td>3473.405906</td>
-      <td>-30.441695</td>
+      <td>0.063228</td>
+      <td>0.038721</td>
+      <td>0.078403</td>
+      <td>0.245597</td>
+      <td>0.023966</td>
+      <td>0.106906</td>
+      <td>0.043064</td>
+      <td>0.034162</td>
+      <td>0.572838</td>
+      <td>0.197657</td>
       <td>...</td>
-      <td>55.198158</td>
-      <td>-154.759782</td>
-      <td>-1297.838754</td>
-      <td>449.564252</td>
-      <td>733.005508</td>
+      <td>0.037489</td>
+      <td>0.009377</td>
+      <td>0.130481</td>
+      <td>0.127632</td>
+      <td>0.176874</td>
       <td>NaN</td>
-      <td>87.953866</td>
-      <td>-0.014825</td>
+      <td>0.056064</td>
+      <td>0.001833</td>
       <td>NaN</td>
-      <td>208.034860</td>
+      <td>-0.007287</td>
     </tr>
     <tr>
       <th>CENT</th>
-      <td>265.995337</td>
-      <td>-15.792594</td>
-      <td>29.778206</td>
-      <td>70.658497</td>
-      <td>67.860877</td>
-      <td>198.623289</td>
-      <td>-44.356682</td>
-      <td>2.332354</td>
-      <td>1471.136222</td>
-      <td>38.850326</td>
+      <td>0.037944</td>
+      <td>0.021515</td>
+      <td>0.050069</td>
+      <td>0.023966</td>
+      <td>0.109393</td>
+      <td>0.059475</td>
+      <td>0.009189</td>
+      <td>0.021278</td>
+      <td>0.430200</td>
+      <td>0.130463</td>
       <td>...</td>
-      <td>42.845016</td>
-      <td>3.911320</td>
-      <td>-106.745066</td>
-      <td>201.707986</td>
-      <td>297.699522</td>
+      <td>0.017991</td>
+      <td>0.014651</td>
+      <td>0.088006</td>
+      <td>0.050558</td>
+      <td>0.122808</td>
       <td>NaN</td>
-      <td>75.540931</td>
-      <td>-0.034895</td>
+      <td>0.046862</td>
+      <td>-0.043566</td>
       <td>NaN</td>
-      <td>43.795155</td>
+      <td>-0.004589</td>
     </tr>
     <tr>
       <th>CME</th>
-      <td>1466.740664</td>
-      <td>-35.436553</td>
-      <td>92.232768</td>
-      <td>433.381507</td>
-      <td>198.623289</td>
-      <td>1107.668606</td>
-      <td>-95.293370</td>
-      <td>33.283480</td>
-      <td>7555.474566</td>
-      <td>39.594868</td>
+      <td>0.240610</td>
+      <td>0.041686</td>
+      <td>0.136931</td>
+      <td>0.106906</td>
+      <td>0.059475</td>
+      <td>0.903754</td>
+      <td>0.039096</td>
+      <td>0.052095</td>
+      <td>2.452420</td>
+      <td>0.303425</td>
       <td>...</td>
-      <td>151.502388</td>
-      <td>-324.728354</td>
-      <td>-1421.099020</td>
-      <td>923.006151</td>
-      <td>1685.512973</td>
+      <td>0.064926</td>
+      <td>0.071860</td>
+      <td>0.500329</td>
+      <td>0.258598</td>
+      <td>0.718576</td>
       <td>NaN</td>
-      <td>286.588685</td>
-      <td>-0.190850</td>
+      <td>0.156010</td>
+      <td>-0.074899</td>
       <td>NaN</td>
-      <td>369.772985</td>
+      <td>-0.050366</td>
     </tr>
     <tr>
       <th>DTEA</th>
-      <td>-82.765683</td>
-      <td>8.089958</td>
-      <td>-10.094158</td>
-      <td>8.014144</td>
-      <td>-44.356682</td>
-      <td>-95.293370</td>
-      <td>21.061896</td>
-      <td>-1.226686</td>
-      <td>-690.122405</td>
-      <td>-9.310695</td>
+      <td>0.025684</td>
+      <td>0.008618</td>
+      <td>0.019553</td>
+      <td>0.043064</td>
+      <td>0.009189</td>
+      <td>0.039096</td>
+      <td>0.516684</td>
+      <td>0.015549</td>
+      <td>0.130587</td>
+      <td>0.040208</td>
       <td>...</td>
-      <td>-8.525583</td>
-      <td>2.428024</td>
-      <td>3.911218</td>
-      <td>-95.315793</td>
-      <td>-100.203509</td>
+      <td>0.030699</td>
+      <td>0.005369</td>
+      <td>-0.000660</td>
+      <td>0.055836</td>
+      <td>0.081862</td>
       <td>NaN</td>
-      <td>-46.097047</td>
-      <td>0.002325</td>
+      <td>0.015638</td>
+      <td>0.006917</td>
       <td>NaN</td>
-      <td>-7.783643</td>
+      <td>-0.002265</td>
     </tr>
     <tr>
       <th>FRPT</th>
-      <td>67.761889</td>
-      <td>-5.467575</td>
-      <td>13.691463</td>
-      <td>-7.254609</td>
-      <td>2.332354</td>
-      <td>33.283480</td>
-      <td>-1.226686</td>
-      <td>20.528429</td>
-      <td>48.038368</td>
-      <td>2.170361</td>
+      <td>0.134653</td>
+      <td>0.017510</td>
+      <td>0.044157</td>
+      <td>0.034162</td>
+      <td>0.021278</td>
+      <td>0.052095</td>
+      <td>0.015549</td>
+      <td>0.181723</td>
+      <td>0.525317</td>
+      <td>0.079710</td>
       <td>...</td>
-      <td>8.729568</td>
-      <td>4.579280</td>
-      <td>2.332316</td>
-      <td>42.346433</td>
-      <td>47.337300</td>
+      <td>0.021344</td>
+      <td>-0.000301</td>
+      <td>0.000956</td>
+      <td>0.061030</td>
+      <td>0.161315</td>
       <td>NaN</td>
-      <td>11.464260</td>
-      <td>-0.036775</td>
+      <td>0.026143</td>
+      <td>-0.031250</td>
       <td>NaN</td>
-      <td>-0.378159</td>
+      <td>-0.006066</td>
     </tr>
     <tr>
       <th>GOOG</th>
-      <td>11591.169170</td>
-      <td>-206.356633</td>
-      <td>472.453186</td>
-      <td>3473.405906</td>
-      <td>1471.136222</td>
-      <td>7555.474566</td>
-      <td>-690.122405</td>
-      <td>48.038368</td>
-      <td>63383.871446</td>
-      <td>261.315275</td>
+      <td>3.181668</td>
+      <td>0.433829</td>
+      <td>0.999974</td>
+      <td>0.572838</td>
+      <td>0.430200</td>
+      <td>2.452420</td>
+      <td>0.130587</td>
+      <td>0.525317</td>
+      <td>49.505934</td>
+      <td>4.192031</td>
       <td>...</td>
-      <td>914.203627</td>
-      <td>-3501.813767</td>
-      <td>-15594.065694</td>
-      <td>7214.066331</td>
-      <td>12747.534615</td>
+      <td>0.358821</td>
+      <td>0.200331</td>
+      <td>0.763855</td>
+      <td>1.206816</td>
+      <td>5.706095</td>
       <td>NaN</td>
-      <td>2054.867736</td>
-      <td>-2.295279</td>
+      <td>0.896629</td>
+      <td>-0.846947</td>
       <td>NaN</td>
-      <td>3055.911118</td>
+      <td>-0.088129</td>
     </tr>
     <tr>
       <th>KHC</th>
-      <td>37.728778</td>
-      <td>-2.486708</td>
-      <td>2.471830</td>
-      <td>-30.441695</td>
-      <td>38.850326</td>
-      <td>39.594868</td>
-      <td>-9.310695</td>
-      <td>2.170361</td>
-      <td>261.315275</td>
-      <td>55.226767</td>
+      <td>0.583230</td>
+      <td>0.038860</td>
+      <td>0.107708</td>
+      <td>0.197657</td>
+      <td>0.130463</td>
+      <td>0.303425</td>
+      <td>0.040208</td>
+      <td>0.079710</td>
+      <td>4.192031</td>
+      <td>0.968436</td>
       <td>...</td>
-      <td>6.608097</td>
-      <td>0.962938</td>
-      <td>-2.866791</td>
-      <td>62.786642</td>
-      <td>63.315429</td>
+      <td>0.132981</td>
+      <td>0.004113</td>
+      <td>-0.003645</td>
+      <td>0.443165</td>
+      <td>0.884554</td>
       <td>NaN</td>
-      <td>29.476574</td>
-      <td>-0.105540</td>
+      <td>0.111313</td>
+      <td>-0.055900</td>
       <td>NaN</td>
-      <td>9.452360</td>
+      <td>0.009923</td>
     </tr>
   </tbody>
 </table>
@@ -1094,14 +807,10 @@ covar.head(10)
 
 
 ```python
-market_temp = close.iloc[:,[20]]
+market_temp = close_final.iloc[:,[20]]
 market = market_temp.dropna()
 
 ```
-
-    SPY    571340.017387
-    dtype: float64
-
 
 
 ```python
@@ -1113,9 +822,9 @@ print(variance)
 market.head(10)
 ```
 
-    SPY    124.610691
+    SPY   -0.031624
     dtype: float64
-    SPY    2638.883322
+    SPY    1.696072
     dtype: float64
 
 
@@ -1146,43 +855,43 @@ market.head(10)
   <tbody>
     <tr>
       <th>2000-01-03</th>
-      <td>103.393242</td>
+      <td>4.043312</td>
     </tr>
     <tr>
       <th>2000-01-04</th>
-      <td>99.349930</td>
+      <td>-0.177711</td>
     </tr>
     <tr>
       <th>2000-01-05</th>
-      <td>99.527641</td>
+      <td>1.599548</td>
     </tr>
     <tr>
       <th>2000-01-06</th>
-      <td>97.928093</td>
+      <td>-5.687286</td>
     </tr>
     <tr>
       <th>2000-01-07</th>
-      <td>103.615379</td>
+      <td>-0.355492</td>
     </tr>
     <tr>
       <th>2000-01-10</th>
-      <td>103.970871</td>
+      <td>1.244125</td>
     </tr>
     <tr>
       <th>2000-01-11</th>
-      <td>102.726746</td>
+      <td>1.021920</td>
     </tr>
     <tr>
       <th>2000-01-12</th>
-      <td>101.704826</td>
+      <td>-1.377381</td>
     </tr>
     <tr>
       <th>2000-01-13</th>
-      <td>103.082207</td>
+      <td>-1.399566</td>
     </tr>
     <tr>
-      <th>2000-01-14</th>
-      <td>104.481773</td>
+      <th>2000-01-18</th>
+      <td>-0.844230</td>
     </tr>
   </tbody>
 </table>
@@ -1198,34 +907,34 @@ print(variance[[0][0]])
 
 ```
 
-    AAPL     20183.781907
-    BETR      -459.850045
-    BUFF      1037.536241
-    CALM      5933.322620
-    CENT      3262.749249
-    CME      14873.458114
-    DTEA     -1334.633658
-    FRPT       269.015945
-    GOOG    112733.001666
-    KHC        741.789951
-    LANC     13850.834851
-    LWAY       785.685664
-    MSFT      7454.773054
-    NUTR         0.000000
-    PF        4623.434309
-    POST      7835.332044
-    PPC       2734.003288
-    RELV     -2898.545207
-    RIBT     -6549.491353
-    SAFM     13439.552800
-    SPY      23507.262977
-    TOF          0.000000
-    VVI       4551.484670
-    WILC        -4.062500
-    WWAV         0.000000
-    agg       4596.941615
+    AAPL      6.608920
+    BETR      1.396304
+    BUFF      2.885049
+    CALM      2.303075
+    CENT      1.431950
+    CME       6.751351
+    DTEA      1.151857
+    FRPT      1.606855
+    GOOG     78.410438
+    KHC       9.805761
+    LANC      5.773939
+    LWAY      1.027115
+    MSFT      4.401080
+    NUTR      0.000000
+    PF        3.541414
+    POST      6.455729
+    PPC       1.682447
+    RELV      2.842821
+    RIBT    113.662828
+    SAFM      6.067782
+    SPY      14.028377
+    TOF       0.000000
+    VVI       3.045391
+    WILC     -1.852250
+    WWAV      0.000000
+    agg      -0.205133
     dtype: float64
-    2638.88332232
+    1.69607197374
 
 
 
@@ -1242,32 +951,49 @@ beta_appl.head(100)
 
 
 
-    AAPL     7.648607
-    BETR    -0.174259
-    BUFF     0.393172
-    CALM     2.248422
-    CENT     1.236413
-    CME      5.636270
-    DTEA    -0.505757
-    FRPT     0.101943
-    GOOG    42.719964
-    KHC      0.281100
-    LANC     5.248748
-    LWAY     0.297734
-    MSFT     2.824973
+    AAPL     3.896603
+    BETR     0.823258
+    BUFF     1.701018
+    CALM     1.357888
+    CENT     0.844274
+    CME      3.980580
+    DTEA     0.679132
+    FRPT     0.947398
+    GOOG    46.230608
+    KHC      5.781453
+    LANC     3.404301
+    LWAY     0.605585
+    MSFT     2.594866
     NUTR     0.000000
-    PF       1.752042
-    POST     2.969185
-    PPC      1.036046
-    RELV    -1.098398
-    RIBT    -2.481918
-    SAFM     5.092894
-    SPY      8.908034
+    PF       2.088009
+    POST     3.806282
+    PPC      0.991967
+    RELV     1.676120
+    RIBT    67.015333
+    SAFM     3.577550
+    SPY      8.271098
     TOF      0.000000
-    VVI      1.724777
-    WILC    -0.001539
+    VVI      1.795555
+    WILC    -1.092082
     WWAV     0.000000
-    agg      1.742003
+    agg     -0.120946
     dtype: float64
 
+
+
+
+```python
+import matplotlib.pyplot as plt
+plt.plot(beta_appl)
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1156074a8>]
+
+
+
+
+![png](output_14_1.png)
 
