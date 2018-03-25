@@ -990,10 +990,5 @@ plt.plot(beta_appl)
 
 
 
-    [<matplotlib.lines.Line2D at 0x1156074a8>]
-
-
-
-
-![png](output_14_1.png)
+![Graph](https://github.com/avnit/ContractWork/blob/master/output_14_1.png)
 
