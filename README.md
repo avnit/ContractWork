@@ -1,5 +1,3 @@
-# ContractWork
-
 #  Beta Calculator 
 ## Author : Avnit Bambah
 ### Date : 03/12/2018
