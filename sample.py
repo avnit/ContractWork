@@ -1,10 +1,3 @@
-print('Hello world')
-
-x = 1
-print(x)
-
-x = x+1
-print(x)
 # Calculate the base rate
 rate = input("Enter the rate")
 hours = input("no of hours worked")
