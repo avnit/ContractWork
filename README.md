@@ -992,3 +992,21 @@ plt.plot(beta_appl)
 
 ![Graph](https://github.com/avnit/ContractWork/blob/master/output_14_1.png)
 
+<!-- ARCH-DIAGRAM:START -->
+
+## Architecture
+
+> Auto-generated architecture diagram. See [`docs/context-map.md`](docs/context-map.md) for the full context map (core application, containers/cloud, and database connections).
+
+```mermaid
+flowchart TD
+  User([User / Client])
+  App["ContractWork<br/><small>__main__.py</small><br/>Application"]
+  DB0[("Redis")]
+  DB1[("SQLite")]
+  User --> App
+  App --> DB0
+  App --> DB1
+```
+
+<!-- ARCH-DIAGRAM:END -->
